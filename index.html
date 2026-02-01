@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cảnh báo tội phạm máy tính</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        line-height: 1.6;
+        background: #050816;
+        color: #f5f5f5;
+      }
+
+      a {
+        color: #7dd3fc;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      header {
+        padding: 32px 16px 16px;
+        text-align: center;
+        background: radial-gradient(circle at top, #0ea5e9 0, #020617 55%);
+        color: #f9fafb;
+      }
+
+      header h1 {
+        margin: 0 0 8px;
+        font-size: 1.7rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      header h2 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        opacity: 0.9;
+      }
+
+      main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 24px 16px 40px;
+      }
+
+      .section {
+        background: rgba(15, 23, 42, 0.9);
+        border-radius: 16px;
+        padding: 20px 18px;
+        margin-bottom: 20px;
+        border: 1px solid rgba(148, 163, 184, 0.4);
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+      }
+
+      .section h3 {
+        margin-top: 0;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #e5e7eb;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .section h3 span.index {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 999px;
+        background: #0ea5e9;
+        color: #020617;
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+
+      .label {
+        font-weight: 600;
+        color: #e5e7eb;
+      }
+
+      ul {
+        padding-left: 1.1rem;
+        margin: 8px 0;
+      }
+
+      li {
+        margin-bottom: 4px;
+      }
+
+      .quote {
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-left: 3px solid #22c55e;
+        background: rgba(34, 197, 94, 0.08);
+        font-size: 0.95rem;
+      }
+
+      .stats {
+        margin-top: 10px;
+      }
+
+      .stat-item {
+        margin-bottom: 8px;
+        padding: 8px 10px;
+        border-radius: 8px;
+        background: rgba(15, 118, 110, 0.25);
+        border: 1px solid rgba(45, 212, 191, 0.5);
+        font-size: 0.95rem;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.7);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-right: 4px;
+      }
+
+      .timeline {
+        margin-top: 6px;
+      }
+
+      .timeline-item {
+        margin-bottom: 8px;
+      }
+
+      .timeline-year {
+        font-weight: 600;
+        color: #e5e7eb;
+      }
+
+      .image-block {
+        margin-top: 14px;
+        text-align: center;
+      }
+
+      .image-block img {
+        max-width: 100%;
+        border-radius: 12px;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+      }
+
+      .image-block p {
+        margin: 6px 0 4px;
+        font-size: 0.9rem;
+        font-style: italic;
+        color: #cbd5f5;
+      }
+
+      .footer-message {
+        margin-top: 8px;
+        padding: 12px;
+        border-radius: 12px;
+        background: rgba(30, 64, 175, 0.5);
+        border: 1px solid rgba(129, 140, 248, 0.8);
+        font-weight: 600;
+        text-align: center;
+      }
+
+      footer {
+        text-align: center;
+        font-size: 0.8rem;
+        padding: 12px 8px 20px;
+        color: #9ca3af;
+      }
+
+      /* ====== LIÊN HỆ & LOGO ====== */
+
+      .contact-footer {
+        background: #020617;
+        border-top: 1px solid rgba(148, 163, 184, 0.3);
+        padding: 24px 16px;
+      }
+
+      .contact-container {
+        max-width: 960px;
+        margin: 0 auto;
+        display: grid;
+        gap: 20px;
+        align-items: start; /* 3 cột căn trên cùng 1 hàng */
+      }
+
+      .contact-logo {
+        text-align: center;
+      }
+
+      .contact-logo img {
+        width: 140px; /* logo to hơn */
+        height: auto;
+        margin-bottom: 12px;
+      }
+
+      .contact-logo p {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #e5e7eb;
+      }
+
+      .contact-info h4,
+      .contact-note h4 {
+        margin: 0 0 8px;
+        min-height: 24px; /* ép cùng chiều cao tiêu đề */
+        display: flex;
+        align-items: center;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #93c5fd;
+      }
+
+      .contact-info p,
+      .contact-note p {
+        margin: 4px 0;
+        font-size: 0.85rem;
+        color: #cbd5f5;
+      }
+
+      .contact-info a {
+        color: #7dd3fc;
+      }
+
+      /* ====== RESPONSIVE (>= 768px) ====== */
+
+      @media (min-width: 768px) {
+        header h1 {
+          font-size: 2rem;
+        }
+
+        header h2 {
+          font-size: 1.05rem;
+        }
+
+        .section {
+          padding: 22px 24px;
+        }
+
+        .contact-container {
+          grid-template-columns: 1fr 1.2fr 1.5fr;
+          align-items: start; /* giữ căn trên cho 3 cột */
+        }
+
+        .contact-logo {
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>CẢNH BÁO TỘI PHẠM MÁY TÍNH</h1>
+      <h2>TRONG KỶ NGUYÊN SỐ: NHẬN DIỆN VÀ PHÒNG NGỪA</h2>
+    </header>
+
+    <main>
+      <!-- 1. ĐỊNH NGHĨA -->
+      <section class="section" id="dinh-nghia">
+        <h3><span class="index">1</span>Định nghĩa và vai trò của máy tính</h3>
+
+        <p>
+          <span class="label">Khái niệm:</span>
+          Tội phạm máy tính là hành vi vi phạm pháp luật hình sự do người có
+          năng lực trách nhiệm hình sự sử dụng máy tính, mạng Internet hoặc
+          thiết bị số để thực hiện hành vi phạm tội, lưu trữ thông tin hoặc xâm
+          phạm an toàn hệ thống.
+        </p>
+
+        <p class="label">Ba vai trò của máy tính trong tội phạm:</p>
+        <ul>
+          <li><b>Mục tiêu tấn công:</b> Hệ thống CNTT bị xâm nhập.</li>
+          <li>
+            <b>Công cụ phạm tội:</b> Sử dụng để thực hiện các tội phạm khác (lừa
+            đảo, đánh bạc…).
+          </li>
+          <li>
+            <b>Nơi lưu trữ:</b> Giấu chứng cứ, tài liệu, dữ liệu bất hợp pháp.
+          </li>
+        </ul>
+      </section>
+
+      <!-- 2. THỰC TRẠNG -->
+      <section class="section" id="thuc-trang">
+        <h3><span class="index">2</span>Thực trạng và lời cảnh báo</h3>
+
+        <p class="label">Sự gia tăng tội phạm:</p>
+        <div class="quote">
+          Khi công nghệ thông tin phát triển mạnh mẽ, các thành tựu càng được
+          ứng dụng rộng rãi thì càng dễ bị lợi dụng hoặc trở thành mục tiêu tấn
+          công.
+        </div>
+
+        <div class="stats">
+          <div class="stat-item">
+            📌 <b>659.000+</b> vụ tấn công mạng nhắm vào cơ quan &amp; doanh
+            nghiệp Việt Nam (NCA, 2024).<br />
+            Nguồn:
+            <a
+              href="https://vneconomy.vn/hon-46-co-quan-doanh-nghiep-viet-nam-bi-tan-cong-mang-trong-nam-2024.htm"
+              target="_blank"
+              >vnconomy.vn</a
+            >
+          </div>
+
+          <div class="stat-item">
+            📌 <b>46,15%</b> cơ quan, doanh nghiệp Việt Nam từng bị tấn công
+            mạng ít nhất một lần (VNCERT/NCA, 2024).<br />
+            Nguồn:
+            <a
+              href="https://vneconomy.vn/hon-46-co-quan-doanh-nghiep-viet-nam-bi-tan-cong-mang-trong-nam-2024.htm"
+              target="_blank"
+              >vnconomy.vn</a
+            >
+          </div>
+
+          <div class="stat-item">
+            📌 <b>155.640</b> máy tính tại Việt Nam bị ransomware trong năm 2024
+            (Bkav).<br />
+            Nguồn:
+            <a
+              href="https://vietnamnet.vn/hon-155-600-may-tinh-tai-viet-nam-bi-tan-cong-boi-ma-doc-ransomware-2384142.html"
+              target="_blank"
+              >vietnamnet.vn</a
+            >
+          </div>
+        </div>
+
+        <p class="label" style="margin-top: 12px">Thực tế tại Việt Nam:</p>
+
+        <div class="image-block">
+          <img
+            src="assets/images/phanbocacloaitancong.png"
+            alt="Phân bố các loại tấn công mạng"
+          />
+          <p>Hình thức tấn công mạng phổ biến (VN, 2024)</p>
+          <a
+            href="https://www.vietnam.vn/en/hon-659-000-vu-tan-cong-mang-xay-ra-trong-nam-2024"
+            target="_blank"
+            >Xem bài viết gốc</a
+          >
+        </div>
+
+        <div class="image-block">
+          <img
+            src="assets/images/sotrangbitancong.png"
+            alt="Số trang, cổng TTĐT bị tấn công"
+          />
+          <p>
+            Số trang, cổng thông tin điện tử bị tấn công qua các năm tại Việt
+            Nam
+          </p>
+          <a
+            href="https://vjst.vn/cac-cuoc-tan-cong-mang-ngay-cang-tinh-vi-va-phuc-tap-hon-67939.html"
+            target="_blank"
+            >Xem bài viết gốc</a
+          >
+        </div>
+
+        <div class="stats" style="margin-top: 14px">
+          <div class="stat-item">
+            📍 <b>CIC bị hacker tấn công (10/9/2025)</b>, có dấu hiệu đánh cắp
+            dữ liệu cá nhân; vụ việc được <b>VNCERT/Bộ Công an</b> vào cuộc điều
+            tra.<br />
+            Nguồn:
+            <a
+              href="https://baochinhphu.vn/cic-bi-hacker-tan-cong-vncert-khuyen-cao-nguoi-dan-nang-cao-canh-giac-102250911201710342.htm"
+              target="_blank"
+            >
+              baochinhphu.vn
+            </a>
+          </div>
+
+          <div class="stat-item">
+            📍 <b>14,5 triệu tài khoản</b> tại Việt Nam bị lộ dữ liệu trong năm
+            <b>2024</b>, chiếm khoảng <b>12%</b> tổng số tài khoản bị rò rỉ trên
+            toàn cầu.<br />
+            Nguồn:
+            <a
+              href="https://www.vietnam.vn/en/14-5-trieu-tai-khoan-bi-ro-ri-vi-lo-lot-du-lieu-o-viet-nam-nam-2024"
+              target="_blank"
+            >
+              vietnam.vn
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. HÀNH VI & PHÁP LÝ -->
+      <section class="section" id="hanh-vi-phap-ly">
+        <h3>
+          <span class="index">3</span>Các hành vi phổ biến &amp; hành lang pháp
+          lý
+        </h3>
+
+        <p class="label">Nhóm hành vi nguy hiểm:</p>
+        <ul>
+          <li>
+            <b>Hacking:</b> Xâm nhập trái phép vào hệ thống máy tính và thông
+            tin.
+          </li>
+          <li>
+            <b>Phát tán mã độc:</b> Tạo, lan truyền các chương trình vi-rút, mã
+            độc hại.
+          </li>
+          <li>
+            <b>Lừa đảo trực tuyến (Online Fraud):</b> Lấy cắp thông tin tài
+            khoản, giả mạo email, lừa đảo đầu giá, chiếm đoạt tài sản…
+          </li>
+          <li>
+            <b>Quấy rối &amp; khủng bố:</b> Quấy rối tình dục, lan truyền nội
+            dung nhạy cảm, đe dọa, khủng bố qua mạng.
+          </li>
+        </ul>
+
+        <p class="label">Hệ quả kinh tế nghiêm trọng:</p>
+        <div class="stat-item">
+          📌 <b>USD 4,88 triệu/vụ vi phạm dữ liệu</b> – thiệt hại trung bình
+          toàn cầu (IBM, 2024).<br />
+          Nguồn:
+          <a
+            href="https://www.ibm.com/thought-leadership/institute-business-value/en-us/report/cost-of-a-data-breach-2024"
+            target="_blank"
+            >IBM Cost of a Data Breach 2024</a
+          >
+        </div>
+
+        <p class="label">Quy định pháp luật (timeline):</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-year"
+              >2015 – Bộ luật Hình sự (Điều 289, 290)</span
+            >
+            <ul>
+              <li>
+                <b>Điều 289:</b> Tội xâm nhập trái phép vào mạng máy tính, mạng
+                viễn thông hoặc phương tiện điện tử của người khác.
+              </li>
+              <li>
+                <b>Điều 290:</b> Tội sử dụng mạng máy tính, mạng viễn thông,
+                phương tiện điện tử thực hiện hành vi chiếm đoạt tài sản.
+              </li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-year">2018 – Nghị định 85</span> (bảo đảm an
+            toàn hệ thống thông tin theo cấp độ)
+            <ul>
+              <li>
+                Quy định tiêu chí, trách nhiệm và thủ tục phân loại hệ thống
+                thông tin theo <b>5 cấp độ</b> an toàn.
+              </li>
+              <li>
+                Yêu cầu các cơ quan, tổ chức phải bảo đảm an toàn hệ thống thông
+                tin theo cấp độ đã xác định.
+              </li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-year"
+              >2020 – Nghị định 53 về thương mại điện tử</span
+            >
+            <ul>
+              <li>
+                Quy định chi tiết các <b>biện pháp bảo vệ an ninh mạng</b> như
+                thẩm định, kiểm tra, giám sát và ứng phó sự cố.
+              </li>
+              <li>
+                Làm rõ trách nhiệm, thủ tục phối hợp giữa cơ quan chức năng và
+                đơn vị cung cấp dịch vụ.
+              </li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-year">2024 – Dự thảo sửa đổi, bổ sung</span>
+            <ul>
+              <li>
+                Tăng mức phạt, mở rộng phạm vi điều chỉnh đối với tội phạm công
+                nghệ cao.
+              </li>
+              <li>
+                Bổ sung các hành vi bị cấm liên quan đến <b>AI</b>, công nghệ
+                deepfake, giả mạo/gây hiểu nhầm trên mạng.
+              </li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-year"
+              >2025 – Cập nhật mới về AI, deepfake, ransomware</span
+            >
+            <ul>
+              <li>
+                Chú trọng chế tài đối với hành vi sử dụng <b>AI</b> để tạo
+                deepfake lừa đảo, xâm phạm dữ liệu cá nhân, ảnh hưởng an ninh
+                mạng.
+              </li>
+              <li>
+                Nâng mức xử phạt trong lĩnh vực dữ liệu cá nhân và an ninh mạng,
+                hướng tới phù hợp với thông lệ quốc tế.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. ĐỐI TƯỢNG -->
+      <section class="section" id="doi-tuong">
+        <h3><span class="index">4</span>Đối tượng và đặc điểm chủ quan</h3>
+
+        <ul>
+          <li>
+            <b>Chủ thể:</b> Thường là những người có hiểu biết cơ bản về công
+            nghệ nhưng đang có xu hướng “trẻ hóa” (nhiều trường hợp là sinh
+            viên, học sinh).
+          </li>
+          <li>
+            <b>Lỗi vi phạm:</b> Có thể do cố ý, tự ý thử nghiệm hoặc có trường
+            hợp do “thiếu hiểu biết” nhưng hành vi vẫn vi phạm pháp luật (ví dụ:
+            tấn công thử vào hệ thống thật mà không có sự cho phép).
+          </li>
+        </ul>
+      </section>
+
+      <!-- 5. PHÒNG TRÁNH & KẾT LUẬN -->
+      <section class="section" id="phong-tranh">
+        <h3>
+          <span class="index">5</span>Hướng dẫn phòng tránh &amp; kết luận cho
+          sinh viên, người dùng
+        </h3>
+
+        <p class="label">Nguyên tắc vàng:</p>
+        <div class="quote">“Không biết luật không được miễn trừ.”</div>
+
+        <p class="label" style="margin-top: 10px">Ranh giới an toàn:</p>
+        <ul>
+          <li>
+            Chỉ thực hiện thử nghiệm bảo mật (<i>Penetration Testing</i>) trên
+            môi trường lab riêng hoặc hệ thống đã được cấp phép chính thức.
+          </li>
+          <li>
+            Tuân thủ quy trình
+            <b>Responsible Disclosure</b> (báo cáo lỗ hổng có trách nhiệm):
+            không khai thác thêm, ghi chép chi tiết và báo cáo ngay cho đơn vị
+            chủ quản.
+          </li>
+        </ul>
+
+        <p class="label">Đạo đức nghề nghiệp:</p>
+        <ul>
+          <li>
+            Không tham gia các dự án, công việc freelance đáng ngờ (đánh cắp dữ
+            liệu, lừa đảo tài chính…).
+          </li>
+          <li>Sử dụng công cụ hacking đúng mục đích học tập và nghiên cứu.</li>
+        </ul>
+
+        <p class="label">Phát triển sự nghiệp bền vững:</p>
+        <ul>
+          <li>
+            Theo đuổi các chứng chỉ quốc tế uy tín như
+            <b>CEH, CISSP, CompTIA Security+</b>.
+          </li>
+          <li>
+            Tham gia các chương trình <b>Bug Bounty</b> hợp pháp để rèn luyện kỹ
+            năng và tạo thu nhập chính đáng.
+          </li>
+        </ul>
+
+        <div class="footer-message">
+          Hãy sử dụng tài năng công nghệ để bảo vệ thế giới số, thay vì trở
+          thành một phần của tội phạm.<br />
+          <span style="font-size: 0.9rem; opacity: 0.9"
+            >Industrial University of Ho Chi Minh City</span
+          >
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== LIÊN HỆ & NHẬN DIỆN ===== -->
+    <section class="contact-footer">
+      <div class="contact-container">
+        <!-- LOGO -->
+        <div class="contact-logo">
+          <img
+            src="assets/images/images.png"
+            alt="Industrial University of Ho Chi Minh City"
+          />
+          <p>Industrial University of Ho Chi Minh City</p>
+        </div>
+
+        <!-- THÔNG TIN LIÊN HỆ -->
+        <div class="contact-info">
+          <h4>Thông tin liên hệ</h4>
+          <p>📍 Trường Đại học Công nghiệp TP. Hồ Chí Minh</p>
+          <p>
+            🌐 Website:
+            <a href="https://iuh.edu.vn" target="_blank">https://iuh.edu.vn</a>
+          </p>
+          <p>📧 Email: 23658241.dat@student.iuh.edu.vn</p>
+          <p>☎ Hotline: 0346.807.411</p>
+        </div>
+
+        <!-- GHI CHÚ -->
+        <div class="contact-note">
+          <h4>Về website</h4>
+          <p>
+            Website phục vụ mục đích tuyên truyền, giáo dục nhận thức về tội
+            phạm máy tính, an toàn thông tin và đạo đức nghề nghiệp trong lĩnh
+            vực CNTT.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      &copy; 2026 – Trang thông tin tuyên truyền về tội phạm máy tính (Nhóm 07).
+    </footer>
+  </body>
+</html>
